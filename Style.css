@@ -1,0 +1,42 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: cadetblue;
+}
+.logo {
+  padding: 10px;
+  width: 75px;
+  height: 75px;
+}
+.pages {
+  padding-top: 25px;
+  padding-right: 25px;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+button {
+  width: 75px;
+  height: 50px;
+  text-align: center;
+}
+button:hover {
+  box-shadow: 0 8px 16px 0 rgb(0 0 0 / 2);
+  background-color: grey;
+  cursor: pointer;
+}
+.lag {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  gap: 20px;
+}
+p {
+  padding: 10px;
+  border: 3px solid black;
+}
