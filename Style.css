@@ -1,3 +1,6 @@
+body {
+  padding-top: 95px;
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -13,19 +16,19 @@
   height: 75px;
 }
 .pages {
-  padding-top: 25px;
+  padding-top: 40px;
   padding-right: 25px;
 }
 a {
   text-decoration: none;
   color: black;
-}
-button {
   width: 75px;
   height: 50px;
   text-align: center;
+  border: 3px solid;
+  padding: 10px;
 }
-button:hover {
+a:hover {
   box-shadow: 0 8px 16px 0 rgb(0 0 0 / 2);
   background-color: grey;
   cursor: pointer;
@@ -39,4 +42,7 @@ button:hover {
 p {
   padding: 10px;
   border: 3px solid black;
+}
+pre {
+  font-size: large;
 }
