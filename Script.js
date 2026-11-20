@@ -93,8 +93,15 @@ function closingModal2() {
   document.getElementById("Opprettmodal").classList.add("hiddenModal");
 }
 
+function påMelding() {
+  alert("Du er meldt på!");
+  document.getElementById("kalendermodal").classList.remove("showModal");
+  document.getElementById("kalendermodal").classList.add("hiddenModal");
+}
+
 function openingModal(modus) {
   const turInfo = document.getElementById("turinfo");
+  const påMelding = document.getElementById("påmelding");
   turInfo.textContent = "";
   if (modus === "mandag") {
     turInfo.textContent =
@@ -195,6 +202,11 @@ function openingModal(modus) {
       "Ekstra: Barn er velkomne. Vi tar pauser underveis.";
   } else if (modus === "søndag2") {
     turInfo.textContent = "Ingen tur denne dagen.";
+  }
+  if (turInfo.textContent === "Ingen tur denne dagen.") {
+    document.getElementById("påmelding").style.visibility = "hidden";
+  } else {
+    document.getElementById("påmelding").style.visibility = "visible";
   }
   document.getElementById("kalendermodal").classList.remove("hiddenModal");
   document.getElementById("kalendermodal").classList.add("showModal");
