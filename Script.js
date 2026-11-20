@@ -100,7 +100,7 @@ function openingModal(modus) {
     turInfo.textContent =
       "Tur: Lyngstad til Bua " +
       "\n" +
-      " Dato: Mandag 23. november 2026 " +
+      " Dato: Mandag 16. november 2026 " +
       "\n" +
       " Tid: 12:00 " +
       "\n" +
