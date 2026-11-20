@@ -94,6 +94,15 @@ function closingModal2() {
 }
 
 let valgtDag;
+let turDatoer = {
+  mandag: "2026-11-16",
+  torsdag: "2026-11-19",
+  søndag: "2026-11-22",
+  tirsdag2: "2026-11-24",
+  onsdag2: "2026-11-25",
+  torsdag2: "2026-11-26",
+  lørdag2: "2026-11-28",
+};
 let ledigePlasser = {
   mandag: 8,
   torsdag: 6,
@@ -101,7 +110,7 @@ let ledigePlasser = {
   tirsdag2: 10,
   onsdag2: 5,
   torsdag2: 7,
-  lørdag: 12,
+  lørdag2: 12,
 };
 function påMelding() {
   if (ledigePlasser[valgtDag] > 0) {
@@ -120,7 +129,9 @@ function openingModal(modus) {
   valgtDag = modus;
   const turInfo = document.getElementById("turinfo");
   const påMelding = document.getElementById("påmelding");
+  const vær = document.getElementById("vær");
   turInfo.textContent = "";
+  vær.textContent = "";
   if (modus === "mandag") {
     turInfo.textContent =
       "Tur: Lyngstad til Bua " +
@@ -176,6 +187,9 @@ function openingModal(modus) {
       "Destinasjon: Skogsstien\n" +
       "Varighet: Cirka 1 time\n" +
       "Ekstra: Vi tar en fruktpause underveis.";
+    const dagIndex = værdata.time.indexOf("2026-11-22");
+    vær.textContent =
+      "Temperatur: " + værdata.temperature_2m_max[dagIndex] + "°C";
   } else if (modus === "mandag2") {
     turInfo.textContent = "Ingen tur denne dagen.";
   } else if (modus === "tirsdag2") {
@@ -191,6 +205,9 @@ function openingModal(modus) {
       "Destinasjon: Sentrum\n" +
       "Varighet: Cirka 50 minutter\n" +
       "Ekstra: Rolig tur på fortau.";
+    const dagIndex = værdata.time.indexOf("2026-11-24");
+    vær.textContent =
+      "Temperatur: " + værdata.temperature_2m_max[dagIndex] + "°C";
   } else if (modus === "onsdag2") {
     turInfo.textContent =
       "Tur: Kort tur i parken\n" +
@@ -204,6 +221,9 @@ function openingModal(modus) {
       "Destinasjon: Parken\n" +
       "Varighet: Cirka 30 minutter\n" +
       "Ekstra: Passer for deg som ønsker en kort tur.";
+    const dagIndex = værdata.time.indexOf("2026-11-25");
+    vær.textContent =
+      "Temperatur: " + værdata.temperature_2m_max[dagIndex] + "°C";
   } else if (modus === "torsdag2") {
     turInfo.textContent =
       "Tur: Utsiktstur\n" +
@@ -217,6 +237,9 @@ function openingModal(modus) {
       "Destinasjon: Utsiktspunktet\n" +
       "Varighet: Cirka 1 time\n" +
       "Ekstra: Noe motbakke. Ta med gode sko.";
+    const dagIndex = værdata.time.indexOf("2026-11-26");
+    vær.textContent =
+      "Temperatur: " + værdata.temperature_2m_max[dagIndex] + "°C";
   } else if (modus === "fredag2") {
     turInfo.textContent = "Ingen tur denne dagen.";
   } else if (modus === "lørdag2") {
@@ -251,8 +274,13 @@ function closingModal() {
   document.getElementById("kalendermodal").classList.remove("showModal");
   document.getElementById("kalendermodal").classList.add("hiddenModal");
 }
+
+let værdata;
+const værUrl =
+  "https://api.open-meteo.com/v1/forecast?latitude=63.74644&longitude=11.29963&daily=temperature_2m_max,precipitation_probability_max&timezone=auto";
 fetch(værUrl)
   .then((response) => response.json())
   .then((data) => {
     console.log(data.daily);
+    værdata = data.daily;
   });
