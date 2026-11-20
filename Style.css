@@ -17,6 +17,9 @@ body {
   width: 75px;
   height: 75px;
 }
+h1 {
+  text-align: center;
+}
 .pages {
   padding-top: 40px;
   padding-right: 25px;
@@ -102,4 +105,31 @@ input {
   background-color: cadetblue;
   text-align: center;
   font-size: larger;
+}
+.kalender {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+.denne-uken {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: 50px;
+}
+.neste-uke {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: 50px;
+}
+.mandag,
+.tirsdag,
+.onsdag,
+.torsdag,
+.fredag,
+.lørdag,
+.søndag {
+  border: 3px solid;
+  padding: 10px;
 }
