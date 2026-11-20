@@ -16,12 +16,65 @@
         <a href="finn turer.html">Finn turer</a>
       </div>
     </div>
-    <div class="lag">
-      <p style="padding: 10px; border: 3px solid black">Lag ny +</p>
-      <p style="padding: 10px; border: 3px solid black">Lag ny +</p>
-      <p style="padding: 10px; border: 3px solid black">Lag ny +</p>
-      <p style="padding: 10px; border: 3px solid black">Lag ny +</p>
-      <p style="padding: 10px; border: 3px solid black">Lag ny +</p>
+    <h1 style="text-align: center">Opprett ny tur</h1>
+    <button style="margin-left: 48%" onclick="openingModal2()">
+      Opprett her
+    </button>
+    <div id="Opprettmodal" class="hiddenModal">
+      <div class="modalInnhold">
+        <form action="">
+          <input placeholder="Navn" type="text" id="turnavn" name="turnavn" />
+          <input placeholder="Dato" type="date" id="dato" name="dato" />
+          <input
+            placeholder="Klokkeslett"
+            type="time"
+            id="klokkeslett"
+            name="klokkeslett"
+          />
+          <input
+            placeholder="Antall plasser"
+            type="number"
+            id="plasser"
+            name="plasser"
+          />
+          <input
+            placeholder="Turleder"
+            type="text"
+            id="turleder"
+            name="turleder"
+          />
+          <input
+            placeholder="Møteplass"
+            type="text"
+            id="møteplass"
+            name="møteplass"
+          />
+          <input
+            placeholder="Destinasjon"
+            type="text"
+            id="destinasjon"
+            name="destinasjon"
+          />
+          <input
+            placeholder="Estimert varighet"
+            type="number"
+            id="varighet"
+            name="varighet"
+          />
+          <textarea
+            placeholder="Ekstra informasjon"
+            id="innformasjon"
+            name="innformasjon"
+          ></textarea>
+        </form>
+        <div style="display: flex; justify-content: center; gap: 10px">
+          <button onclick="closingModal2()">Lukk</button>
+          <button onclick="lagetTur()">Lag tur</button>
+        </div>
+      </div>
+    </div>
+    <div class="laget tur">
+      <pre id="resultat"></pre>
     </div>
   </body>
 </html>
