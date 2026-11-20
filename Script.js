@@ -251,3 +251,8 @@ function closingModal() {
   document.getElementById("kalendermodal").classList.remove("showModal");
   document.getElementById("kalendermodal").classList.add("hiddenModal");
 }
+fetch(værUrl)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data.daily);
+  });
