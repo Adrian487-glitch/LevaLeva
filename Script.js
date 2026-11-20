@@ -1,6 +1,6 @@
 console.log("Hello world");
 
-function lagetTur() {
+function lagetTur(modus) {
   const turnavn = document.getElementById("turnavn").value;
   const dato = document.getElementById("dato").value;
   const klokkeslett = document.getElementById("klokkeslett").value;
@@ -11,25 +11,37 @@ function lagetTur() {
   const varighet = document.getElementById("varighet").value;
   const innformasjon = document.getElementById("innformasjon").value;
   const resultat = document.getElementById("resultat");
+  if (modus === ny) {
+  }
+  if (modus === rediger) {
+  }
   resultat.textContent =
     turnavn +
     "\n" +
+    "dato: " +
     dato +
     "\n" +
+    "Klokkeslett: " +
     klokkeslett +
     "\n" +
+    "Antall plasser igjen " +
     plasser +
     "\n" +
+    "Turleder: " +
     turleder +
     "\n" +
+    "Møteplass: " +
     møteplass +
     "\n" +
+    "Destinasjon: " +
     destinasjon +
     "\n" +
+    "Varighet: " +
     varighet +
     "\n" +
     innformasjon;
   document.getElementById("resultat").style.border = "3px solid";
+  document.getElementById("resultat").style.visibility = "visible";
   document.getElementById("Opprettmodal").classList.remove("showModal");
   document.getElementById("Opprettmodal").classList.add("hiddenModal");
 }

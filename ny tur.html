@@ -17,9 +17,12 @@
       </div>
     </div>
     <h1 style="text-align: center">Opprett ny tur</h1>
-    <button style="margin-left: 48%" onclick="openingModal2()">
-      Opprett her
-    </button>
+    <div style="display: flex; gap: 20px">
+      <button style="margin-left: 44%" onclick="openingModal2('ny')">
+        Opprett her
+      </button>
+      <button onclick="openingModal2('rediger')">Rediger tur her</button>
+    </div>
     <div id="Opprettmodal" class="hiddenModal">
       <div class="modalInnhold">
         <form action="">
@@ -57,7 +60,7 @@
           />
           <input
             placeholder="Estimert varighet"
-            type="number"
+            type="text"
             id="varighet"
             name="varighet"
           />
