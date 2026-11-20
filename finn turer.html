@@ -22,54 +22,95 @@
       <h2>Denne uken</h2>
       <h2>Neste uke</h2>
       <div class="denne-uken">
-        <div class="mandag">
+        <div onclick="openingModal('mandag')" class="mandag">
           <h3>Mandag</h3>
+          <pre>
+Lyngstad til Bua
+12:00
+          </pre>
         </div>
-        <div class="tirsdag">
+        <div onclick="openingModal('tirsdag')" class="tirsdag">
           <h3>Tirsdag</h3>
+          <pre>ingen tur denne dagen</pre>
         </div>
-        <div class="onsdag">
+        <div onclick="openingModal('onsdag')" class="onsdag">
           <h3>Onsdag</h3>
+          <pre>ingen tur denne dagen</pre>
         </div>
-        <div class="torsdag">
+        <div onclick="openingModal('torsdag')" class="torsdag">
           <h3>Torsdag</h3>
+          <pre>
+Rolig tur langs sjøen	
+10:00
+          </pre>
         </div>
-        <div class="fredag">
+        <div onclick="openingModal('fredag')" class="fredag">
           <h3>Fredag</h3>
+          <pre>ingen tur denne dagen</pre>
         </div>
-        <div class="lørdag">
+        <div onclick="openingModal('lørdag')" class="lørdag">
           <h3>Lørdag</h3>
+          <pre>ingen tur denne dagen</pre>
         </div>
-        <div class="søndag">
+        <div onclick="openingModal('søndag')" class="søndag">
           <h3>Søndag</h3>
+          <pre>
+Skogstur med fruktpause	
+13:00
+          </pre>
         </div>
       </div>
       <div class="neste-uke">
-        <div class="mandag">
+        <div onclick="openingModal('mandag2')" class="mandag">
           <h3>Mandag</h3>
+          <pre>ingen tur denne dagen</pre>
         </div>
-        <div class="tirsdag">
+        <div onclick="openingModal('tirsdag2')" class="tirsdag">
           <h3>Tirsdag</h3>
+          <pre>
+Tur rundt sentrum	
+11:00
+          </pre>
         </div>
-        <div class="onsdag">
+        <div onclick="openingModal('onsdag2')" class="onsdag">
           <h3>Onsdag</h3>
+          <pre>
+Kort tur i parken	
+12:30
+          </pre>
         </div>
-        <div class="torsdag">
+        <div onclick="openingModal('torsdag2')" class="torsdag">
           <h3>Torsdag</h3>
+          <pre>
+Utsiktstur
+14:00
+          </pre>
         </div>
-        <div class="fredag">
+        <div onclick="openingModal('fredag2')" class="fredag">
           <h3>Fredag</h3>
+          <pre>ingen tur denne dagen</pre>
         </div>
-        <div class="lørdag">
+        <div onclick="openingModal('lørdag2')" class="lørdag">
           <h3>Lørdag</h3>
+          <pre>
+Familietur i rolig tempo	
+10:30
+          </pre>
         </div>
-        <div class="søndag">
+        <div onclick="openingModal('søndag2')" class="søndag">
           <h3>Søndag</h3>
+          <pre>ingen tur denne dagen</pre>
         </div>
       </div>
     </div>
     <div class="footer">
       <p>LevaLeva</p>
+    </div>
+    <div id="kalendermodal" class="hiddenModal">
+      <div class="modalInnhold">
+        <pre id="turinfo"></pre>
+        <button onclick="closingModal()">Lukk</button>
+      </div>
     </div>
   </body>
 </html>

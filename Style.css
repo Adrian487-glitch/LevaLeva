@@ -110,6 +110,7 @@ input {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
+  margin-bottom: 70px;
 }
 .denne-uken {
   display: grid;
@@ -130,6 +131,34 @@ input {
 .fredag,
 .lørdag,
 .søndag {
-  border: 3px solid;
+  border: 3px solid black;
+  text-align: center;
+  width: 100px;
+  height: 140px;
   padding: 10px;
+}
+.mandag:hover,
+.tirsdag:hover,
+.onsdag:hover,
+.torsdag:hover,
+.fredag:hover,
+.lørdag:hover,
+.søndag:hover {
+  border-color: red;
+  transform: translateY(-5px);
+  transition:
+    transform 0.5s,
+    border-color 0.5s;
+  cursor: pointer;
+}
+#turinfo {
+  line-height: 25px;
+}
+#kalendermodal {
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
