@@ -1,6 +1,7 @@
 console.log("Hello world");
 
-function lagetTur(modus) {
+let lagretTur;
+function lagetTur() {
   const turnavn = document.getElementById("turnavn").value;
   const dato = document.getElementById("dato").value;
   const klokkeslett = document.getElementById("klokkeslett").value;
@@ -11,10 +12,17 @@ function lagetTur(modus) {
   const varighet = document.getElementById("varighet").value;
   const innformasjon = document.getElementById("innformasjon").value;
   const resultat = document.getElementById("resultat");
-  if (modus === ny) {
-  }
-  if (modus === rediger) {
-  }
+  lagretTur = {
+    navn: turnavn,
+    dato: dato,
+    klokkeslett: klokkeslett,
+    plasser: plasser,
+    turleder: turleder,
+    møteplass: møteplass,
+    destinasjon: destinasjon,
+    varighet: varighet,
+    innformasjon: innformasjon,
+  };
   resultat.textContent =
     turnavn +
     "\n" +
@@ -46,7 +54,20 @@ function lagetTur(modus) {
   document.getElementById("Opprettmodal").classList.add("hiddenModal");
 }
 
-function openingModal2() {
+function openingModal2(modus) {
+  if (modus === "ny") {
+    document.getElementById("turskjema").reset();
+  } else if (modus === "rediger") {
+    document.getElementById("turnavn").value = lagretTur.navn;
+    document.getElementById("dato").value = lagretTur.dato;
+    document.getElementById("klokkeslett").value = lagretTur.klokkeslett;
+    document.getElementById("plasser").value = lagretTur.plasser;
+    document.getElementById("turleder").value = lagretTur.turleder;
+    document.getElementById("møteplass").value = lagretTur.møteplass;
+    document.getElementById("destinasjon").value = lagretTur.destinasjon;
+    document.getElementById("varighet").value = lagretTur.varighet;
+    document.getElementById("innformasjon").value = lagretTur.innformasjon;
+  }
   document.getElementById("Opprettmodal").classList.remove("hiddenModal");
   document.getElementById("Opprettmodal").classList.add("showModal");
 }
