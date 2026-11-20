@@ -12,6 +12,19 @@ function lagetTur() {
   const varighet = document.getElementById("varighet").value;
   const innformasjon = document.getElementById("innformasjon").value;
   const resultat = document.getElementById("resultat");
+  if (
+    !turnavn ||
+    !dato ||
+    !klokkeslett ||
+    !plasser ||
+    !turleder ||
+    !møteplass ||
+    !destinasjon ||
+    !varighet
+  ) {
+    alert("Du mangler å fylle inn noen felt");
+    return;
+  }
   lagretTur = {
     navn: turnavn,
     dato: dato,
@@ -57,6 +70,9 @@ function lagetTur() {
 function openingModal2(modus) {
   if (modus === "ny") {
     document.getElementById("turskjema").reset();
+  } else if (modus === "rediger" && !lagretTur) {
+    alert("Ingenting å redigere, lag en tur først");
+    return;
   } else if (modus === "rediger") {
     document.getElementById("turnavn").value = lagretTur.navn;
     document.getElementById("dato").value = lagretTur.dato;

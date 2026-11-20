@@ -89,3 +89,7 @@ input {
   border-radius: 20px;
   visibility: hidden;
 }
+#turskjema {
+  display: flex;
+  flex-direction: column;
+}
