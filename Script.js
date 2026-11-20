@@ -93,13 +93,31 @@ function closingModal2() {
   document.getElementById("Opprettmodal").classList.add("hiddenModal");
 }
 
+let valgtDag;
+let ledigePlasser = {
+  mandag: 8,
+  torsdag: 6,
+  søndag: 9,
+  tirsdag2: 10,
+  onsdag2: 5,
+  torsdag2: 7,
+  lørdag: 12,
+};
 function påMelding() {
-  alert("Du er meldt på!");
-  document.getElementById("kalendermodal").classList.remove("showModal");
-  document.getElementById("kalendermodal").classList.add("hiddenModal");
+  if (ledigePlasser[valgtDag] > 0) {
+    ledigePlasser[valgtDag] -= 1;
+    alert("Du er meldt på!");
+    document.getElementById("kalendermodal").classList.remove("showModal");
+    document.getElementById("kalendermodal").classList.add("hiddenModal");
+  } else {
+    alert("det er fullt!");
+    document.getElementById("kalendermodal").classList.remove("showModal");
+    document.getElementById("kalendermodal").classList.add("hiddenModal");
+  }
 }
 
 function openingModal(modus) {
+  valgtDag = modus;
   const turInfo = document.getElementById("turinfo");
   const påMelding = document.getElementById("påmelding");
   turInfo.textContent = "";
@@ -111,7 +129,9 @@ function openingModal(modus) {
       "\n" +
       " Tid: 12:00 " +
       "\n" +
-      " Plasser: 8 ledige av 15 totalt " +
+      " Plasser: " +
+      ledigePlasser[valgtDag] +
+      " ledige av 15 totalt " +
       "\n" +
       " Turleder: Bob " +
       "\n" +
@@ -131,7 +151,9 @@ function openingModal(modus) {
       "Tur: Rolig tur langs sjøen\n" +
       "Dato: Torsdag 19. november 2026\n" +
       "Tid: 10:00\n" +
-      "Plasser: 6 ledige av 12 totalt\n" +
+      "Plasser: " +
+      ledigePlasser[valgtDag] +
+      " ledige av 12 totalt\n" +
       "Turleder: Nora\n" +
       "Møteplass: Havna\n" +
       "Destinasjon: Strandpromenaden\n" +
@@ -146,7 +168,9 @@ function openingModal(modus) {
       "Tur: Skogstur med fruktpause\n" +
       "Dato: Søndag 22. november 2026\n" +
       "Tid: 13:00\n" +
-      "Plasser: 9 ledige av 15 totalt\n" +
+      "Plasser: " +
+      ledigePlasser[valgtDag] +
+      " ledige av 15 totalt\n" +
       "Turleder: Emil\n" +
       "Møteplass: Parkeringsplassen ved skogen\n" +
       "Destinasjon: Skogsstien\n" +
@@ -159,7 +183,9 @@ function openingModal(modus) {
       "Tur: Tur rundt sentrum\n" +
       "Dato: Tirsdag 24. november 2026\n" +
       "Tid: 11:00\n" +
-      "Plasser: 10 ledige av 15 totalt\n" +
+      "Plasser: " +
+      ledigePlasser[valgtDag] +
+      " ledige av 15 totalt\n" +
       "Turleder: Ingrid\n" +
       "Møteplass: Torget\n" +
       "Destinasjon: Sentrum\n" +
@@ -170,7 +196,9 @@ function openingModal(modus) {
       "Tur: Kort tur i parken\n" +
       "Dato: Onsdag 25. november 2026\n" +
       "Tid: 12:30\n" +
-      "Plasser: 5 ledige av 10 totalt\n" +
+      "Plasser: " +
+      ledigePlasser[valgtDag] +
+      " ledige av 10 totalt\n" +
       "Turleder: Amir\n" +
       "Møteplass: Parkinngangen\n" +
       "Destinasjon: Parken\n" +
@@ -181,7 +209,9 @@ function openingModal(modus) {
       "Tur: Utsiktstur\n" +
       "Dato: Torsdag 26. november 2026\n" +
       "Tid: 14:00\n" +
-      "Plasser: 7 ledige av 12 totalt\n" +
+      "Plasser: " +
+      ledigePlasser[valgtDag] +
+      " ledige av 12 totalt\n" +
       "Turleder: Nora\n" +
       "Møteplass: Turstien\n" +
       "Destinasjon: Utsiktspunktet\n" +
@@ -194,7 +224,9 @@ function openingModal(modus) {
       "Tur: Familietur i rolig tempo\n" +
       "Dato: Lørdag 28. november 2026\n" +
       "Tid: 10:30\n" +
-      "Plasser: 12 ledige av 20 totalt\n" +
+      "Plasser: " +
+      ledigePlasser[valgtDag] +
+      " ledige av 20 totalt\n" +
       "Turleder: Bob\n" +
       "Møteplass: Ved lekeplassen\n" +
       "Destinasjon: Turstien ved elva\n" +
@@ -203,7 +235,10 @@ function openingModal(modus) {
   } else if (modus === "søndag2") {
     turInfo.textContent = "Ingen tur denne dagen.";
   }
-  if (turInfo.textContent === "Ingen tur denne dagen.") {
+  if (
+    turInfo.textContent === "Ingen tur denne dagen." ||
+    ledigePlasser[valgtDag] <= 0
+  ) {
     document.getElementById("påmelding").style.visibility = "hidden";
   } else {
     document.getElementById("påmelding").style.visibility = "visible";
