@@ -93,3 +93,13 @@ input {
   display: flex;
   flex-direction: column;
 }
+.footer {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  position: fixed;
+  color: black;
+  background-color: cadetblue;
+  text-align: center;
+  font-size: larger;
+}
