@@ -103,6 +103,49 @@ let turDatoer = {
   torsdag2: "2026-11-26",
   lørdag2: "2026-11-28",
 };
+const turKort = {
+  mandag: "Lyngstad til Bua\n12:00",
+  torsdag: "Rolig tur langs sjøen\n10:00",
+  søndag: "Skogstur med fruktpause\n13:00",
+  tirsdag2: "Tur rundt sentrum\n11:00",
+  onsdag2: "Kort tur i parken\n12:30",
+  torsdag2: "Utsiktstur\n14:00",
+  lørdag2: "Familietur i rolig tempo\n10:30",
+};
+
+function visKalender() {
+  const kortene = document.querySelectorAll(
+    ".denne-uken > div, .neste-uke > div",
+  );
+  const ukedager = [
+    "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag",
+  ];
+  const mandag = new Date();
+  mandag.setHours(0, 0, 0, 0);
+  mandag.setDate(mandag.getDate() - ((mandag.getDay() + 6) % 7));
+
+  for (let i = 0; i < kortene.length; i++) {
+    const dato = new Date(mandag);
+    dato.setDate(mandag.getDate() + i);
+    const datoTekst =
+      dato.getFullYear() + "-" +
+      String(dato.getMonth() + 1).padStart(2, "0") + "-" +
+      String(dato.getDate()).padStart(2, "0");
+    const tur = Object.keys(turDatoer).find(
+      (dag) => turDatoer[dag] === datoTekst,
+    );
+    const kort = kortene[i];
+    kort.querySelector("h3").textContent =
+      ukedager[i % 7] + " " + dato.getDate() + "." + (dato.getMonth() + 1) + ".";
+    kort.querySelector("pre").textContent = tur
+      ? turKort[tur]
+      : "Ingen tur denne dagen";
+    kort.onclick = function () {
+      openingModal(tur);
+    };
+  }
+}
+
 let ledigePlasser = {
   mandag: 8,
   torsdag: 6,
@@ -130,7 +173,7 @@ function openingModal(modus) {
   const turInfo = document.getElementById("turinfo");
   const påMelding = document.getElementById("påmelding");
   const vær = document.getElementById("vær");
-  turInfo.textContent = "";
+  turInfo.textContent = "Ingen tur denne dagen.";
   vær.textContent = "";
   if (modus === "mandag") {
     turInfo.textContent =
@@ -187,9 +230,6 @@ function openingModal(modus) {
       "Destinasjon: Skogsstien\n" +
       "Varighet: Cirka 1 time\n" +
       "Ekstra: Vi tar en fruktpause underveis.";
-    const dagIndex = værdata.time.indexOf("2026-11-22");
-    vær.textContent =
-      "Temperatur: " + værdata.temperature_2m_max[dagIndex] + "°C";
   } else if (modus === "mandag2") {
     turInfo.textContent = "Ingen tur denne dagen.";
   } else if (modus === "tirsdag2") {
@@ -205,9 +245,6 @@ function openingModal(modus) {
       "Destinasjon: Sentrum\n" +
       "Varighet: Cirka 50 minutter\n" +
       "Ekstra: Rolig tur på fortau.";
-    const dagIndex = værdata.time.indexOf("2026-11-24");
-    vær.textContent =
-      "Temperatur: " + værdata.temperature_2m_max[dagIndex] + "°C";
   } else if (modus === "onsdag2") {
     turInfo.textContent =
       "Tur: Kort tur i parken\n" +
@@ -221,9 +258,6 @@ function openingModal(modus) {
       "Destinasjon: Parken\n" +
       "Varighet: Cirka 30 minutter\n" +
       "Ekstra: Passer for deg som ønsker en kort tur.";
-    const dagIndex = værdata.time.indexOf("2026-11-25");
-    vær.textContent =
-      "Temperatur: " + værdata.temperature_2m_max[dagIndex] + "°C";
   } else if (modus === "torsdag2") {
     turInfo.textContent =
       "Tur: Utsiktstur\n" +
@@ -237,9 +271,6 @@ function openingModal(modus) {
       "Destinasjon: Utsiktspunktet\n" +
       "Varighet: Cirka 1 time\n" +
       "Ekstra: Noe motbakke. Ta med gode sko.";
-    const dagIndex = værdata.time.indexOf("2026-11-26");
-    vær.textContent =
-      "Temperatur: " + værdata.temperature_2m_max[dagIndex] + "°C";
   } else if (modus === "fredag2") {
     turInfo.textContent = "Ingen tur denne dagen.";
   } else if (modus === "lørdag2") {
@@ -257,6 +288,23 @@ function openingModal(modus) {
       "Ekstra: Barn er velkomne. Vi tar pauser underveis.";
   } else if (modus === "søndag2") {
     turInfo.textContent = "Ingen tur denne dagen.";
+  }
+  const turDato = turDatoer[valgtDag];
+  if (værdata && turDato) {
+    const iDag = new Date();
+    iDag.setHours(0, 0, 0, 0);
+    const turDag = new Date(turDato + "T00:00:00");
+    const dagerTilTur = Math.round((turDag - iDag) / (1000 * 60 * 60 * 24));
+    const værIndex = værdata.time.indexOf(turDato);
+
+    if (dagerTilTur >= 0 && dagerTilTur <= 4 && værIndex !== -1) {
+      vær.textContent =
+        "Vær i Levanger: maks " +
+        værdata.temperature_2m_max[værIndex] +
+        " °C, opptil " +
+        værdata.precipitation_probability_max[værIndex] +
+        " % sjanse for nedbør.";
+    }
   }
   if (
     turInfo.textContent === "Ingen tur denne dagen." ||
@@ -284,3 +332,7 @@ fetch(værUrl)
     console.log(data.daily);
     værdata = data.daily;
   });
+
+if (document.querySelector(".kalender")) {
+  visKalender();
+}
