@@ -21,9 +21,13 @@
     <p>
       Turer og tidspunkt kan bli endret. Sjekk turinformasjonen før oppmøte.
     </p>
+    <div class="uker-vist">
+      <button onclick="visteUker('forrige')">Forrige uke</button>
+      <button onclick="visteUker('neste')">Neste uke</button>
+    </div>
     <div class="kalender">
-      <h2>Denne uken</h2>
-      <h2>Neste uke</h2>
+      <h2 id="denneuken">Denne uken</h2>
+      <h2 id="nesteuke">Neste uke</h2>
       <div class="denne-uken">
         <div onclick="openingModal('mandag')" class="mandag">
           <h3>Mandag</h3>

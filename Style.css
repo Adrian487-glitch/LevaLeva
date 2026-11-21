@@ -169,3 +169,8 @@ input {
   margin-right: auto;
   margin-top: 10px;
 }
+.uker-vist {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}

@@ -113,30 +113,62 @@ const turKort = {
   lørdag2: "Familietur i rolig tempo\n10:30",
 };
 
+let visteuker = 0;
+function visteUker(modus) {
+  if (modus === "neste") {
+    visteuker += 1;
+  } else if (modus === "forrige") {
+    visteuker -= 1;
+  }
+  if (visteuker < 0) {
+    visteuker = 0;
+  }
+  visKalender();
+}
 function visKalender() {
   const kortene = document.querySelectorAll(
     ".denne-uken > div, .neste-uke > div",
   );
   const ukedager = [
-    "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag",
+    "Mandag",
+    "Tirsdag",
+    "Onsdag",
+    "Torsdag",
+    "Fredag",
+    "Lørdag",
+    "Søndag",
   ];
   const mandag = new Date();
   mandag.setHours(0, 0, 0, 0);
   mandag.setDate(mandag.getDate() - ((mandag.getDay() + 6) % 7));
+  mandag.setDate(mandag.getDate() + visteuker * 7);
+  document.getElementById("denneuken").textContent =
+    "Denne uken " + mandag.getFullYear();
+  const nesteMandag = new Date(mandag);
+  nesteMandag.setDate(nesteMandag.getDate() + 7);
+  document.getElementById("nesteuke").textContent =
+    "Neste uke " + nesteMandag.getFullYear();
 
   for (let i = 0; i < kortene.length; i++) {
     const dato = new Date(mandag);
     dato.setDate(mandag.getDate() + i);
     const datoTekst =
-      dato.getFullYear() + "-" +
-      String(dato.getMonth() + 1).padStart(2, "0") + "-" +
+      dato.getFullYear() +
+      "-" +
+      String(dato.getMonth() + 1).padStart(2, "0") +
+      "-" +
       String(dato.getDate()).padStart(2, "0");
     const tur = Object.keys(turDatoer).find(
       (dag) => turDatoer[dag] === datoTekst,
     );
     const kort = kortene[i];
     kort.querySelector("h3").textContent =
-      ukedager[i % 7] + " " + dato.getDate() + "." + (dato.getMonth() + 1) + ".";
+      ukedager[i % 7] +
+      " " +
+      dato.getDate() +
+      "." +
+      (dato.getMonth() + 1) +
+      ".";
     kort.querySelector("pre").textContent = tur
       ? turKort[tur]
       : "Ingen tur denne dagen";
