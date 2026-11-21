@@ -1,15 +1,35 @@
 # LevaLeva
 
-LevaLeva er en skoleoppgave i HTML, CSS og JavaScript. Nettsiden er en prototype for et lege- og tannlegekontor i Levanger som arrangerer trimturer for pasientene sine.
+LevaLeva er en skoleoppgave laget med HTML, CSS og JavaScript. Nettsiden er en prototype for et lege- og tannlegekontor i Levanger som arrangerer trimturer for pasientene sine.
 
-## Dette kan du prøve
+## Dette har jeg laget
 
-- **Hjem** gir en kort introduksjon og en lenke til turkalenderen.
-- **Ny tur** lar ansatte fylle ut et turskjema, se turen de har laget og redigere opplysningene.
-- **Finn turer** viser to uker om gangen. Bla med ukeknappene og trykk på en tur for å se blant annet møtested, turleder, varighet og antall ledige plasser. For turer innen fire dager viser siden også temperatur og sannsynlighet for nedbør fra [Open-Meteo](https://open-meteo.com/) når et varsel er tilgjengelig.
+- **Hjem:** En forside med informasjon om LevaLeva og en lenke til turkalenderen.
+- **Ny tur:** Et skjema der ansatte kan opprette en tur og redigere turen de har laget.
+- **Finn turer:** En kalender som viser to uker om gangen. Brukeren kan bla mellom ukene og trykke på en dag for å se turinformasjon i et modalvindu.
+- **Turinformasjon:** Modalvinduet viser blant annet dato, klokkeslett, turleder, møtested, destinasjon, varighet, ekstra informasjon og antall ledige plasser.
+- **Værmelding:** For turer i løpet av de neste fire dagene vises temperatur og sannsynlighet for nedbør når værdata er tilgjengelig. Værdata hentes fra [Open-Meteo](https://open-meteo.com/).
+- **Påmelding:** Påmeldingsknappen trekker én plass fra antallet ledige plasser. Knappen vises bare når det finnes en tur med ledige plasser.
 
-Påmeldingen er en demonstrasjon. Når du melder deg på, går antallet ledige plasser ned med én. Ingen deltakernavn vises. Kalenderen bruker eksempelturer fra 16. til 28. november 2026. Endringer og påmeldinger lagres bare så lenge siden er åpen.
+## Teknologier
 
-## Kjør prosjektet lokalt
+- HTML
+- CSS
+- JavaScript
+- Open-Meteo API
 
-Åpne prosjektmappen i Visual Studio Code. Med utvidelsen Live Server installert kan du høyreklikke på `Index.html` og velge **Open with Live Server**. Start serveren fra prosjektmappen slik at bildene lastes riktig. Værmeldingen krever internettilgang.
+## Kjøre prosjektet lokalt
+
+1. Åpne prosjektmappen i Visual Studio Code.
+2. Start prosjektet med Live Server fra `Index.html`.
+3. Åpne «Finn turer» for å bruke kalenderen og se turinformasjonen.
+
+Værmeldingen krever internettilgang.
+
+## Om prototypen
+
+Prosjektet bruker eksempelturer. Opprettede turer og påmeldinger lagres bare mens nettsiden er åpen. Pålogging med ID-porten, lagring og ekte påmeldingsfunksjoner kan kobles til en backend senere. Deltakernes navn vises ikke.
+
+## Bruk av KI
+
+Jeg brukte KI som læringshjelp under arbeidet. Jeg stilte spørsmål om HTML, CSS og JavaScript, fikk hjelp til å forstå feil og brukte forklaringene til å lære hvordan funksjonene i prosjektet virker.
